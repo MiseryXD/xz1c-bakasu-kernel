@@ -137,6 +137,13 @@ not work from `adb shell` (root granted to apps by the manager is unaffected).
 not in this repository (copyright). Extract them from the ROM package yourself. Ready-to-flash
 images are attached to the Releases page instead.
 
+## Disclaimer
+
+- **Only for Havoc-OS 3.11 (`QQ3A.200805.001`, build 2020-11-20).** Other ROMs or other builds will hang at the boot animation.
+- Flashing carries risk (brick, data loss). Back up first and make sure your bootloader is unlocked.
+- Provided as-is, without warranty; you are responsible for your own device.
+- Not affiliated with Sony, Havoc-OS, or the KernelSU / BakaSU projects.
+
 ## Credits
 
 - [whatawurst/android_kernel_sony_msm8998](https://github.com/whatawurst/android_kernel_sony_msm8998) — the kernel tree the ROM was built from (GPL-2.0)

@@ -132,6 +132,13 @@ KSDBG: dev_alloc_name kernel_crc=0xffffffe7e508dca4 module_crc=0xe7a8dca4
 `boot.img`、BakaSU 管理器 APK、Sony 私有 ramdisk、`/vendor` 二进制模块都没有放进仓库
 （版权原因），请自行从 ROM 包提取。可直接刷的镜像放在 **Releases** 页面。
 
+## 免责声明 / Disclaimer
+
+- 仅适用于 **Havoc-OS 3.11（`QQ3A.200805.001`，2020-11-20 构建）**；其他 ROM 或构建刷入会卡开机动画
+- 刷机有风险（可能变砖、丢数据），请先备份，并确认 bootloader 已解锁
+- 不提供任何担保，使用后果自负
+- 与 Sony、Havoc-OS、KernelSU / BakaSU 官方无关
+
 ## Credits
 
 - [whatawurst/android_kernel_sony_msm8998](https://github.com/whatawurst/android_kernel_sony_msm8998) — 本机同源内核树（GPL-2.0）
