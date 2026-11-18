@@ -7,12 +7,16 @@
 A from-source kernel port of BakaSU (KernelSU fork) for the Sony Xperia XZ1 Compact running
 Havoc-OS 3.11 (Android 10, kernel 4.4.240).
 
+**English:** [README.en.md](README.en.md)
+
 ## 结果 / Result
 
 - 内核 `4.4.240-whatawurst+`，用 **clang 9.0.3 (r353983c)** 编译（与 ROM 一致）
 - `/vendor/lib/modules` 的 6 个模块全部加载：`wlan` `kscl` `fpc1145` `ldo_vibrator` `sim_detect` `bu520x1nvx`
 - BakaSU 管理器显示「工作中」，`ksud` 正常启动，无开机卡死
 - 只改 boot 分区，system/vendor/data 未动
+
+验证环境：Havoc-OS 3.11，`QQ3A.200805.001`，2020-11-20 构建，msm8998。
 
 ## 两个关键问题 / Two kernel traps
 
@@ -63,8 +67,9 @@ git apply ../patches/0002-arm64-disable-ARCH_RELOCATES_KCRCTAB.patch
 # 4. 配置（设备配置 + BakaSU 片段）
 mkdir -p out && cp ../config/config_lilac.txt out/.config
 scripts/kconfig/merge_config.sh -O out out/.config ../config/ksu.config
+make O=out ARCH=arm64 olddefconfig
 
-# 5. 构建（clang 9.0.3）
+# 5. 构建（clang 9.0.3，需先把它的 bin 放进 PATH）
 make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- \
      CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabihf- \
      -j$(nproc) Image.gz-dtb
@@ -73,6 +78,9 @@ make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- \
 python3 ../scripts/repack_boot.py boot_havoc.img out/arch/arm64/boot/Image.gz-dtb boot_ksu.img
 fastboot flash boot boot_ksu.img
 ```
+
+工具链用 AOSP 预编译的 `clang-r353983c`（clang 9.0.3，取自 `android-10.0.0_r*` 分支），把它的
+`bin/` 放到 `PATH` 最前面，`clang --version` 应显示 9.0.3。
 
 ## 验证 / Verify
 
@@ -122,7 +130,7 @@ KSDBG: dev_alloc_name kernel_crc=0xffffffe7e508dca4 module_crc=0xe7a8dca4
 ## 不包含 / Not included
 
 `boot.img`、BakaSU 管理器 APK、Sony 私有 ramdisk、`/vendor` 二进制模块都没有放进仓库
-（版权原因），请自行从 ROM 包提取。
+（版权原因），请自行从 ROM 包提取。可直接刷的镜像放在 **Releases** 页面。
 
 ## Credits
 
