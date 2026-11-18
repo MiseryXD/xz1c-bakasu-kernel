@@ -1,0 +1,13 @@
+diff --git a/arch/arm64/include/asm/module.h b/arch/arm64/include/asm/module.h
+index 06ff7fd9e81f..1b9ae576a567 100644
+--- a/arch/arm64/include/asm/module.h
++++ b/arch/arm64/include/asm/module.h
+@@ -34,7 +34,7 @@ u64 module_emit_plt_entry(struct module *mod, const Elf64_Rela *rela,
+ 
+ #ifdef CONFIG_RANDOMIZE_BASE
+ #ifdef CONFIG_MODVERSIONS
+-#define ARCH_RELOCATES_KCRCTAB
++/* #define ARCH_RELOCATES_KCRCTAB */ /* disabled: our link keeps absolute CRCs */
+ #define reloc_start 		(kimage_vaddr - KIMAGE_VADDR)
+ #endif
+ extern u64 module_alloc_base;
