@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """Repack an AOSP header-v0/v1/v2 boot.img with a new kernel, keeping everything else."""
 import struct, sys, hashlib
 
